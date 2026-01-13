@@ -1,11 +1,12 @@
-FROM kasmweb/firefox:1.15.0
+FROM linuxserver/firefox:latest
 
-# Kasm already has:
-# - Firefox (stable)
-# - VNC + noVNC
-# - Proper sandbox handling
-# - User session handling
+# Render ke liye required
+ENV PUID=1000
+ENV PGID=1000
+ENV TZ=Asia/Kolkata
 
-ENV VNC_PW=smileyt
+# Disable internal SSL (Render HTTPS handle karega)
+ENV FIREFOX_CLI="--no-sandbox --disable-gpu"
 
-EXPOSE 6901
+# LinuxServer image default web port
+EXPOSE 3000
